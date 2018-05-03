@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="resetstylesheet.css">
+        <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <script type="text/javascript" src="script.js"></script>
+        <title>
+            Dungeons &amp; Dragons Character Generator
+        </title>
+    </head>
+    <body>
+    
+        <h1><div contenteditable>
+            Dungeons<br><span style="color: grey"> &amp;</span> Dragons 
+        </div></h1>
+        <br>
+        <h2>CHARACTER GENERATOR</h2>
+        
+        <label for="name" id="nameL">Name:</label>
+		<input type="text" id="name"><br>
+        <br>
+        <div id="race">
+            Race:
+            <table>
+                <tr>
+                    <td><img src="raceSymbols/dwarf.jpg" alt="dwarves" height="200"><br><input type="radio" id="dwarves" name="race">Dwarves</td>
+                    <td><img src="raceSymbols/elf.jpg" alt="elves" height="200"><br><input type="radio" id="elves" name="race">Elves</td>
+                    <td><img src="raceSymbols/gnomes.jpg" alt="gnomes" height="200"><br><input type="radio" id="gnomes" name="race">Gnomes</td>
+                    <td><img src="raceSymbols/halfElf.jpg" alt="halfElf" height="200"><br><input type="radio" id="halfElf" name="race">Half-Elves</td>
+                    <td><img src="raceSymbols/halfOrc.jpg" alt="halfOrc" height="200"><br><input type="radio" id="halfOrc" name="race">Half-Orcs</td>
+                    <td><img src="raceSymbols/halfling.jpg" alt="halfling" height="200"><br><input type="radio" id="halfling" name="race">Halflings</td>
+                    <td><img src="raceSymbols/human.jpg" alt="human" height="200"><br><input type="radio" id="human" name="race">Humans</td>
+                </tr>
+            </table>
+            <br>
+            <div id="raceBox">
+                <span>-------------------------------------------------- Please Select A Race --------------------------------------------------</span>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div id="class">
+            Class:
+            <table>
+                <tr>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Barbarian.jpg" alt="barbarian" height="200"><br><input type="radio" id="barbarian" name="class">Barbarian</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Bard.jpg" alt="bard" height="200"><br><input type="radio" id="bard" name="class">Bard</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Cleric.jpg" alt="cleric" height="200"><br><input type="radio" id="cleric" name="class">Cleric</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Druid.jpg" alt="druid" height="200"><br><input type="radio" id="druid" name="class">Druid</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Fighter.jpg" alt="fighter" height="200"><br><input type="radio" id="fighter" name="class">Fighter</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Monk.jpg" alt="monk" height="200"><br><input type="radio" id="monk" name="class">Monk</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Paladin.jpg" alt="paladin" height="200"><br><input type="radio" id="paladin" name="class">Paladin</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Ranger.jpg" alt="ranger" height="200"><br><input type="radio" id="ranger" name="class">Ranger</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Rogue.jpg" alt="rogue" height="200"><br><input type="radio" id="rogue" name="class">Rogue</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Sorcerer.jpg" alt="sorcerer" height="200"><br><input type="radio" id="sorcerer" name="class">Sorcerer</td>
+                    <td><img src="classSymbols/DnD5E_ClassSymb_Wizard.jpg" alt="wizard" height="200"><br><input type="radio" id="wizard" name="class">Wizard</td>
+                </tr> 
+            </table>
+            <br>
+            <div id="classBox">
+                <span>-------------------------------------------------- Please Select A Class --------------------------------------------------</span>
+            </div>
+        </div>
+        <div id="genre">
+            <button type="button" id="generate">Generate Character</button>
+            <button type="button" id="reset">Reset</button>
+        </div>
+        <div id="statsGold">
+        Stats:<br><br>
+        <div id="stats">
+            
+            <label class="stats">Strength:</label>
+            <input type="text" id="str" disabled><br>
+            <label class="stats">Dexterity:</label>
+            <input type="text" id="dex" disabled><br>
+            <label class="stats">Constitution:</label>
+            <input type="text" id="cons" disabled><br>
+            <label class="stats">Intelligence:</label>
+            <input type="text" id="int" disabled><br>
+            <label class="stats">Wisdom:</label>
+            <input type="text" id="wis" disabled><br>
+            <label class="stats">Charisma:</label>
+            <input type="text" id="cha" disabled><br>
+        </div>
+        
+        <div id="goldArea">
+            <div id="gText">Gold:</div>
+            <br><br>
+            <img src="images/Coin_pile.jpg" alt="pile of gold" heigh="170" width="170" id="goldPic">
+            <br><br>
+            <input type="text" id="gold" disabled><br>
+        </div>
+        </div>    
+    </body>
+</html>

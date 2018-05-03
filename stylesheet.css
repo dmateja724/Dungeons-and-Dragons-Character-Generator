@@ -1,0 +1,112 @@
+body {
+    font-family: 'Cinzel Decorative', cursive;
+    background-color: #f7f5e9;
+    font-size: 20px;
+}
+
+h1, h2 {
+    color: red;
+    text-align: center;
+    font-size: 60px;
+}
+
+h2 {
+    text-decoration: overline;
+    text-decoration-color: dimgrey
+}
+
+
+#name {
+    font-family: 'Cinzel Decorative', cursive;
+    border: none;
+    background-color: #f7f5e9;
+    border-bottom: solid;
+    border-width: 1px;
+    width: 300px;
+    padding-left: 6px;
+    font-size: 35px;
+    padding-top: 9px;
+}
+
+#dwarves, #gnomes, #elves, #halfElf, #halfOrc, #halfling, #human {
+    width: 30px;
+}
+
+#barbarian, #bard, #cleric, #druid, #fighter, #monk, #paladin, #ranger, #rogue, #sorcerer, #wizard {
+    width: 30px;
+}
+
+table {
+    font-size: 20px;
+    margin: 20px;
+    width: 1300px;
+}
+
+tr {
+    margin: 10px;
+}
+
+td {
+    text-align: center;
+}
+
+#classBox, #raceBox {
+    border: solid;
+    border-style: dotted;
+    text-align: center;
+    padding: 20px;
+    width: 1100px;
+    margin-left: 100px;
+}
+
+#genre {
+    margin: 80px;
+    margin-left: 480px;
+}
+
+#generate, #reset {
+    padding: 10px;
+    width: 200px;
+    height: 100px;
+    font-size: 25px;
+}
+#stats {
+    float: left;  
+    margin-bottom: 100px;
+    text-align: right;
+}
+
+#str, #dex, #cons, #int, #wis, #cha {
+    border: none;
+    background-color: #f7f5e9;
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+#statsGold {
+    margin-left: 300px;
+}
+#goldArea {
+    clear: both;
+    float: right;
+    margin-right:390px;
+    text-align: right;
+    margin-top: -260px;
+    
+}
+#gold {
+    background-color: #f7f5e9;
+    border: none;
+    border-bottom: solid;
+    border-width: 1px;
+    
+}
+#gText {
+    text-align: left;
+    margin-right: 170px;
+    margin-bottom: -19px;
+}
+
+#goldPic {
+    margin-bottom: -10px;
+}
