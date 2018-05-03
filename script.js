@@ -2,6 +2,8 @@
 var $ = function(id) { 
     return document.getElementById(id); 
 };
+
+//virtual dice roll to build stats
 var diceRoll = function(max) {
     var random;
     if (!isNaN(max)) {
@@ -13,7 +15,7 @@ var diceRoll = function(max) {
 };
 
 
-
+// race descript array used to display information
 var raceD = [];
 raceD["dwarves"] = "Short, stocky, stern, and strong. They have a connection to the earth and ofthen live in mountains or underground lands.<br><br> Stat modifiers: +2 Constitution, +2 Wisdom, -2 Charisma.";
 raceD["elves"] = "Tall, long-lived, aloof, and connected to nature. Elves live in harmony with the natural world around them.<br><br> Stat modifiers: +2 Dexterity, +2 Intelligence, –2 Constitution.";
@@ -23,6 +25,7 @@ raceD["halfOrc"] = "Independent, strong, and distrusted. Half-orcs considered mo
 raceD["halfling"] = "Optimistic, cheerful, curious, and small in stature. On average, only 3 ft (.9 m) tall, they are agile but physically weak.<br><br> Stat modifiers: +2 Dexterity, +2 Charisma, –2 Strength.";
 raceD["human"] = "Adaptive, ambitious, and well-balanced. Humans are the dominant race, and are diverse in appearance and culture.<br><br> Stat modifiers: +2 to one ability score.";
 
+// class description array to display information
 var classD = [];
 classD["barbarian"] = "Uncivilized and strong. Considered brutal berserkers.";
 classD["bard"] = "Charismatic and crafty. Bards use skills and spells to help and harm.";
@@ -36,6 +39,7 @@ classD["rogue"] = "Stealthy assassins. Rogues are cunning thieves and able scout
 classD["sorcerer"] = "Natural born spellcasters. Sorcerers command strange, ancient energies.";
 classD["wizard"] = "Lifelong magic students. Years of study allow wizards to use awesome magic power.";
 
+// Race - verifies which radio button is selected and displays the proper description
 var displayRace = function() {  
      
     if ($("dwarves").checked == true){
@@ -56,6 +60,7 @@ var displayRace = function() {
     
 };
 
+// Class - verifies which radio button is selected and dispays the proper decription
 var displayClass = function() {
     
     if ($("barbarian").checked == true){
@@ -83,6 +88,8 @@ var displayClass = function() {
     }
 };
 
+// rolls the stats that will populate in the stats section when the generate button is
+// clicked and validation is completed
 var rollStats = function() {
     var die1 = diceRoll(6);
     var die2 = diceRoll(6);
@@ -97,6 +104,8 @@ var rollStats = function() {
     $("cha").value = diceRoll(6)+diceRoll(6)+diceRoll(6)+diceRoll(6);
 }
 
+// validates that a name is inputed and that a race and class is selected
+// then runs rollStats() 
 var validate = function() {
     if($("name").value == ""){
         $("nameL").innerHTML = "Name:".fontcolor("red");
@@ -137,6 +146,7 @@ var validate = function() {
     
 };
 
+// resets the entire form 
 var reset = function() {
     
     $("name").value = "";
