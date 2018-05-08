@@ -32,6 +32,13 @@ h2 {
     width: 30px;
 }
 
+#selectStats {
+    width: 1100px;
+    margin-left: 25px;
+    
+}
+
+
 #barbarian, #bard, #cleric, #druid, #fighter, #monk, #paladin, #ranger, #rogue, #sorcerer, #wizard {
     width: 30px;
 }
@@ -57,6 +64,7 @@ td {
     padding: 20px;
     width: 1100px;
     margin-left: 100px;
+    display: block;
 }
 
 #genre {
@@ -77,6 +85,8 @@ td {
 }
 
 #str, #dex, #cons, #int, #wis, #cha {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 19px;
     border: none;
     background-color: #f7f5e9;
     border-bottom: solid;
@@ -84,22 +94,26 @@ td {
 }
 
 #statsGold {
-    margin-left: 300px;
+    margin-left: 250px;
 }
 #goldArea {
     clear: both;
     float: right;
     margin-right:390px;
     text-align: right;
-    margin-top: -260px;
+    margin-top: -320px;
     
 }
 #gold {
+    font-family: 'Cinzel Decorative', cursive;
     background-color: #f7f5e9;
     border: none;
+    text-align: center;
     border-bottom: solid;
     border-width: 1px;
-    
+    margin-top: 20px;
+    font-size: 20px;
+    margin-right: -90px;
 }
 #gText {
     text-align: left;
@@ -109,4 +123,6 @@ td {
 
 #goldPic {
     margin-bottom: -10px;
+    margin-right: -30px;
 }
+
