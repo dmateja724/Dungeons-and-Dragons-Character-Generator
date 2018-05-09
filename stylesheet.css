@@ -32,13 +32,17 @@ h2 {
     width: 30px;
 }
 
-#selectStats {
+#selectStat {
     width: 1100px;
-    margin-left: 25px;
-    
 }
 
-
+#selectStats {
+    border:solid;
+    border-style: dotted;
+    width: 1140px;
+    margin-top: 10px;
+    margin-left: 100px;
+}
 #barbarian, #bard, #cleric, #druid, #fighter, #monk, #paladin, #ranger, #rogue, #sorcerer, #wizard {
     width: 30px;
 }
@@ -68,15 +72,25 @@ td {
 }
 
 #genre {
-    margin: 80px;
-    margin-left: 480px;
+    margin: 100px;
+    margin-left: 460px;
 }
-
+#generate {
+    background-color: forestgreen;
+    float: left;
+    margin-right: 40px;
+}
+#reset {
+    background-color: firebrick;
+    clear: left;
+}
 #generate, #reset {
+    font-family: 'Cinzel Decorative', cursive;
     padding: 10px;
     width: 200px;
     height: 100px;
     font-size: 25px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 #stats {
     float: left;  

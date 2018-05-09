@@ -178,7 +178,7 @@ var rollGold = function() {
     */
 };
 
-// rolls the stats that will populate in the stats section when the generate button is
+// rolls the stats that will populate in the stats section when the generate button is hit
 // if clicked and successful rolls stats for the user
 var rollStats = function() {
     var str = [];
@@ -232,7 +232,7 @@ var rollStats = function() {
         j++;
     }
     
-    //displays stat accordingly by race and applies race modifiers
+    // displays stat accordingly by race and applies race modifiers
     if ($("dwarves").checked == true) {
         $("str").value = strSum;
         $("dex").value = dexSum;
@@ -261,7 +261,8 @@ var rollStats = function() {
         $("int").value = intSum;
         $("wis").value = wisSum;
         $("cha").value = chaSum + 2 + "    +2 Race Modifier";
-    } 
+    }
+    
     
     // if halfElf, halfOrc, or human is selected the user gets to add +2 to a stat of their choice. Verifies which is checked and adds it accordingly    
     if ($("halfElf").checked == true || $("halfOrc").checked == true || $("human").checked == true){
@@ -319,8 +320,10 @@ var validate = function() {
     // validates if a name was entered
     // highlights the word name in red and alerts the user to enter a name
     if($("name").value == ""){
-        $("nameL").innerHTML = "Name:".fontcolor("red");
+        $("nameL").innerHTML = "Name: ".fontcolor("red");
         alert("Please enter a name.");
+    } else {
+        $("nameL").innerHTML = "Name: ";
     }
     
     // validates if a race is selected
@@ -331,10 +334,11 @@ var validate = function() {
     var raceName = ["Dwarves", "Elves", "Gnomes", "Half-Elf", "Half-Orc","Halfling", "Human"];
     var raceConfirm = "";
     // loops through race radio buttons to see which radio button is selected
-    for(var i=0; i<raceRadio.length;i++){
-        if(raceRadio[i].checked == true){
+    for(var j=0; j<raceRadio.length;j++){
+        if(raceRadio[j].checked == true){
             raceValue = true;
-            raceConfirm = raceName[i]; // stores which race is selected in a variable 
+            raceConfirm = raceName[j]; // stores which race is selected in a variable
+            
         }
     }
     // if nothing is selected the select a race area is highlighted red
@@ -358,6 +362,7 @@ var validate = function() {
         if(classRadio[j].checked == true){
             classValue = true;
             classConfirm = className[j]; // stores which race is selected in a variable
+            
         }
     }
     // if nothing is selected the select a class area is highlighted red
@@ -376,6 +381,12 @@ var validate = function() {
         for(var j=0; j<selectStatRadio.length;j++){
             if(selectStatRadio[j].checked == true){
                 selectStatValue = true;
+                $("selectS").innerHTML = "Strenght";
+                $("selectD").innerHTML = "Dexterity";
+                $("selectC").innerHTML = "Constitution";
+                $("selectI").innerHTML = "Intelligence";
+                $("selectW").innerHTML = "Wisdom";
+                $("selectCh").innerHTML = "Charisma";
             }
         }
         // if nothing is selected highlights each stat in red 
@@ -392,21 +403,19 @@ var validate = function() {
     }
     
     // confirms with user if selections are correct (after validation) and rolls stats and gold
-    if (raceValue == true && classValue == true && $("name").value !== "" && selectStatValue == true){
+    // if all valid will display confirm box based on which race is selected to make sure everything is correct
+    if (($("dwarves").checked == true || $("elves").checked == true || $("gnomes").checked == true || $("halfling").checked == true) && (raceValue == true && classValue == true && $("name").value !== "")){
         var conf = confirm("Does everything look good?\n \nName: " + $("name").value + "\nRace: " + raceConfirm + "\nClass: " + classConfirm + "\n-------------------" + "\nClick [OK] to roll stats or [CANCEL] to make a change.");
         if (conf == true){
             rollStats();
             rollGold();
-            // returns the possible "select your own stat" font color back to black 
-            // after everything has been validated 
-            $("selectS").innerHTML = "Strenght";
-            $("selectD").innerHTML = "Dexterity";
-            $("selectC").innerHTML = "Constitution";
-            $("selectI").innerHTML = "Intelligence";
-            $("selectW").innerHTML = "Wisdom";
-            $("selectCh").innerHTML = "Charisma";
-            $("nameL").innerHTML = "Name:"
         } 
+    } else if (($("halfElf").checked == true || $("halfOrc").checked == true || $("human").checked == true) && (raceValue == true && classValue == true && $("name").value !== "" && selectStatValue == true)){
+        var conf = confirm("Does everything look good?\n \nName: " + $("name").value + "\nRace: " + raceConfirm + "\nClass: " + classConfirm + "\n-------------------" + "\nClick [OK] to roll stats or [CANCEL] to make a change.");
+        if (conf == true){
+            rollStats();
+            rollGold();
+        }
     }
     
 };
@@ -444,19 +453,19 @@ var reset = function() {
     $("cha").value = "";
     $("gold").value = "";
     $("selectStats").style.display = "none";
-    $("strength").checked == false;
-    $("dexterity").checked == false;
-    $("constitution").checked == false;
-    $("intelligence").checked == false;
-    $("wisdom").checked == false;
-    $("charisma").checked == false;
+    $("strength").checked = false;
+    $("dexterity").checked = false;
+    $("constitution").checked = false;
+    $("intelligence").checked = false;
+    $("wisdom").checked = false;
+    $("charisma").checked = false;
     $("selectS").innerHTML = "Strenght";
     $("selectD").innerHTML = "Dexterity";
     $("selectC").innerHTML = "Constitution";
     $("selectI").innerHTML = "Intelligence";
     $("selectW").innerHTML = "Wisdom";
     $("selectCh").innerHTML = "Charisma";
-    $("nameL").innerHTML = "Name:"
+    $("nameL").innerHTML = "Name: ";
     
 };
 
