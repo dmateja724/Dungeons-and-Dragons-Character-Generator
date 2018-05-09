@@ -375,12 +375,17 @@ var validate = function() {
     // validates if the possible "select your own stat" is selected
     var selectStatRadio = document.getElementsByName('selectS');
     var selectStatValue = false;
+    // selectStatName array is associated with selectStatRadio i.e. selectStatName[0] = selectStatRadio[0]. 
+    // used later to display what "selected stat" was selected in the confirm box
+    var selectStatName = ["+2 Strength","+2 Dexterity","+2 Constitution","+2 Intelligence","+2 Wisdom","+2 Charisma"];
+    var selectStatConfirm = "";
     // only runs this portion if halfElf, halfOrc, or human is selected
     // loops through if the possible "select your own stat" radio buttons to see which radio button is selected
     if ($("halfElf").checked==true || $("halfOrc").checked == true || $("human").checked == true){
         for(var j=0; j<selectStatRadio.length;j++){
             if(selectStatRadio[j].checked == true){
                 selectStatValue = true;
+                selectStatConfirm = selectStatName[j]; // stores which selected stat is selected in a variable
                 $("selectS").innerHTML = "Strenght";
                 $("selectD").innerHTML = "Dexterity";
                 $("selectC").innerHTML = "Constitution";
@@ -411,7 +416,7 @@ var validate = function() {
             rollGold();
         } 
     } else if (($("halfElf").checked == true || $("halfOrc").checked == true || $("human").checked == true) && (raceValue == true && classValue == true && $("name").value !== "" && selectStatValue == true)){
-        var conf = confirm("Does everything look good?\n \nName: " + $("name").value + "\nRace: " + raceConfirm + "\nClass: " + classConfirm + "\n-------------------" + "\nClick [OK] to roll stats or [CANCEL] to make a change.");
+        var conf = confirm("Does everything look good?\n \nName: " + $("name").value + "\nRace: " + raceConfirm + "\nClass: " + classConfirm + "\nRace Modifier: " + selectStatConfirm + "\n-------------------" + "\nClick [OK] to roll stats or [CANCEL] to make a change.");
         if (conf == true){
             rollStats();
             rollGold();
