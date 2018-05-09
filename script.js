@@ -102,6 +102,56 @@ var displayClass = function() {
 
 // rolls gold based on class selection
 var rollGold = function() {
+    
+    var classRadio = document.getElementsByName('class');
+    
+    // loops through the class radio buttons to see which radio button is selected
+    // if it is true it runs through a switch case 
+    // depending on which position in the array, will roll a specific starting gold pieces formula
+    // each position in the array is associated with a class
+    for(var j=0; j<classRadio.length;j++){
+        if(classRadio[j].checked == true){
+            
+            switch (classRadio[j]){
+                case classRadio[0]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[1]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[2]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[3]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[4]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[5]:
+                    $("gold").value = ((diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[6]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[7]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[8]:
+                    $("gold").value = ((diceRoll(6)+ diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[9]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+                case classRadio[10]:
+                    $("gold").value = ((diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
+                    break;
+            }
+        }
+    }
+   
+    // same thing as above just in if else statement format
+    /*
     if($("barbarian").checked == true){
         $("gold").value = ((diceRoll(6) + diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
     } else if ($("bard").checked == true) {
@@ -125,11 +175,11 @@ var rollGold = function() {
     } else if ($("wizard").checked == true){
         $("gold").value = ((diceRoll(6) + diceRoll(6)) * 10) + "  Gold Pieces";
     }
-
+    */
 };
 
 // rolls the stats that will populate in the stats section when the generate button is
-// clicked and validation is completed
+// if clicked and successful rolls stats for the user
 var rollStats = function() {
     var str = [];
     var dex = [];
@@ -213,25 +263,52 @@ var rollStats = function() {
         $("cha").value = chaSum + 2 + "    +2 Race Modifier";
     } 
     
-    // section for personally selected stat for halfElf, halfOrc, and human ----- NOT FUNCTIONAL
-    /*
+    // if halfElf, halfOrc, or human is selected the user gets to add +2 to a stat of their choice. Verifies which is checked and adds it accordingly    
     if ($("halfElf").checked == true || $("halfOrc").checked == true || $("human").checked == true){
-        if ($("selectS").checked == true){
+        if ($("strength").checked == true){
             $("str").value = strSum + 2 + "    +2 Race Modifier";
             $("dex").value = dexSum;
             $("cons").value = consSum;
             $("int").value = intSum;
             $("wis").value = wisSum;
             $("cha").value = chaSum;
-        } else if ($("selectD").checked == true){
+        } else if ($("dexterity").checked == true){
+            $("str").value = strSum;
+            $("dex").value = dexSum + 2 + "    +2 Race Modifier";
+            $("cons").value = consSum;
+            $("int").value = intSum;
+            $("wis").value = wisSum;
+            $("cha").value = chaSum;
+        } else if ($("constitution").checked == true){
+            $("str").value = strSum;
+            $("dex").value = dexSum;
+            $("cons").value = consSum + 2 + "    +2 Race Modifier";
+            $("int").value = intSum;
+            $("wis").value = wisSum;
+            $("cha").value = chaSum;
+        } else if ($("intelligence").checked == true){
+            $("str").value = strSum;
+            $("dex").value = dexSum;
+            $("cons").value = consSum;
+            $("int").value = intSum + 2 + "    +2 Race Modifier";
+            $("wis").value = wisSum;
+            $("cha").value = chaSum;
+        } else if ($("wisdom").checked == true){
+            $("str").value = strSum;
+            $("dex").value = dexSum;
+            $("cons").value = consSum;
+            $("int").value = intSum;
+            $("wis").value = wisSum + 2 + "    +2 Race Modifier";
+            $("cha").value = chaSum;
+        } else if ($("charisma").checked == true){
             $("str").value = strSum;
             $("dex").value = dexSum;
             $("cons").value = consSum;
             $("int").value = intSum;
             $("wis").value = wisSum;
-            $("cha").value = chaSum;
+            $("cha").value = chaSum + 2 + "    +2 Race Modifier";
         }
-    }*/
+    }
     
 };
 
@@ -240,6 +317,7 @@ var rollStats = function() {
 var validate = function() {
     
     // validates if a name was entered
+    // highlights the word name in red and alerts the user to enter a name
     if($("name").value == ""){
         $("nameL").innerHTML = "Name:".fontcolor("red");
         alert("Please enter a name.");
@@ -248,12 +326,19 @@ var validate = function() {
     // validates if a race is selected
     var raceRadio = document.getElementsByName('race');
     var raceValue = false;
-
+    // raceName array is associated with raceRadio i.e. raceName[0] = raceRadio[0]. 
+    // used later to display what race was selected in the confirm box
+    var raceName = ["Dwarves", "Elves", "Gnomes", "Half-Elf", "Half-Orc","Halfling", "Human"];
+    var raceConfirm = "";
+    // loops through race radio buttons to see which radio button is selected
     for(var i=0; i<raceRadio.length;i++){
         if(raceRadio[i].checked == true){
             raceValue = true;
+            raceConfirm = raceName[i]; // stores which race is selected in a variable 
         }
     }
+    // if nothing is selected the select a race area is highlighted red
+    // alerts the user to select a race
     if(raceValue == false){
         $("raceBox").innerHTML = "-------------------------------------------------- Please Select A Race --------------------------------------------------".fontcolor("red");
         alert("Please select a Race.");
@@ -263,23 +348,64 @@ var validate = function() {
     // validates if a class is selected
     var classRadio = document.getElementsByName('class');
     var classValue = false;
-
+    // className array is associated with classRadio i.e. className[0] = classRadio[0]. 
+    // used later to display what race was selected in the confirm box
+    var className = ["Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Wizard"];
+    var classConfirm = "";
+   
+    // loops through class radio buttons to see which radio button is selected
     for(var j=0; j<classRadio.length;j++){
         if(classRadio[j].checked == true){
             classValue = true;
+            classConfirm = className[j]; // stores which race is selected in a variable
         }
     }
+    // if nothing is selected the select a class area is highlighted red
+    // alerts the user to select a class
     if(classValue == false){
         $("classBox").innerHTML = "-------------------------------------------------- Please Select A Class --------------------------------------------------".fontcolor("red");
         alert("Please Select a Class.");
     }
     
+    // validates if the possible "select your own stat" is selected
+    var selectStatRadio = document.getElementsByName('selectS');
+    var selectStatValue = false;
+    // only runs this portion if halfElf, halfOrc, or human is selected
+    // loops through if the possible "select your own stat" radio buttons to see which radio button is selected
+    if ($("halfElf").checked==true || $("halfOrc").checked == true || $("human").checked == true){
+        for(var j=0; j<selectStatRadio.length;j++){
+            if(selectStatRadio[j].checked == true){
+                selectStatValue = true;
+            }
+        }
+        // if nothing is selected highlights each stat in red 
+        // alerts the user to select a race modifier
+        if(selectStatValue == false){
+            $("selectS").innerHTML = "Strenght".fontcolor("red");
+            $("selectD").innerHTML = "Dexterity".fontcolor("red");
+            $("selectC").innerHTML = "Constitution".fontcolor("red");
+            $("selectI").innerHTML = "Intelligence".fontcolor("red");
+            $("selectW").innerHTML = "Wisdom".fontcolor("red");
+            $("selectCh").innerHTML = "Charisma".fontcolor("red");
+            alert("Please Select a Race Modifier.");
+        }
+    }
+    
     // confirms with user if selections are correct (after validation) and rolls stats and gold
-    if (raceValue == true && classValue == true && $("name").value !== ""){
-        var conf = confirm("Does everything look good? Click [OK] to roll stats or [CANCEL] to make a change.");
+    if (raceValue == true && classValue == true && $("name").value !== "" && selectStatValue == true){
+        var conf = confirm("Does everything look good?\n \nName: " + $("name").value + "\nRace: " + raceConfirm + "\nClass: " + classConfirm + "\n-------------------" + "\nClick [OK] to roll stats or [CANCEL] to make a change.");
         if (conf == true){
             rollStats();
             rollGold();
+            // returns the possible "select your own stat" font color back to black 
+            // after everything has been validated 
+            $("selectS").innerHTML = "Strenght";
+            $("selectD").innerHTML = "Dexterity";
+            $("selectC").innerHTML = "Constitution";
+            $("selectI").innerHTML = "Intelligence";
+            $("selectW").innerHTML = "Wisdom";
+            $("selectCh").innerHTML = "Charisma";
+            $("nameL").innerHTML = "Name:"
         } 
     }
     
@@ -317,6 +443,20 @@ var reset = function() {
     $("wis").value = "";
     $("cha").value = "";
     $("gold").value = "";
+    $("selectStats").style.display = "none";
+    $("strength").checked == false;
+    $("dexterity").checked == false;
+    $("constitution").checked == false;
+    $("intelligence").checked == false;
+    $("wisdom").checked == false;
+    $("charisma").checked == false;
+    $("selectS").innerHTML = "Strenght";
+    $("selectD").innerHTML = "Dexterity";
+    $("selectC").innerHTML = "Constitution";
+    $("selectI").innerHTML = "Intelligence";
+    $("selectW").innerHTML = "Wisdom";
+    $("selectCh").innerHTML = "Charisma";
+    $("nameL").innerHTML = "Name:"
     
 };
 
