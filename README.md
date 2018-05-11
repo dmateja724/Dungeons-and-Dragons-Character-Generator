@@ -1,5 +1,5 @@
-# Dungeons and Dragons Character Generator (IN PROGRESS)
+# Dungeons and Dragons Character Generator (Complete)
 
  see word doc inside the repo
  
- - cookie support needs to be added
+ 
