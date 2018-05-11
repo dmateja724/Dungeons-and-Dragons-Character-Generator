@@ -1,7 +1,12 @@
 "use strict";
+
 var $ = function(id) { 
     return document.getElementById(id); 
 };
+
+// array to store values that will be pushed into local storage 
+var localStats = [];
+
 
 //virtual dice roll to build stats
 var diceRoll = function(max) {
@@ -46,13 +51,13 @@ var displayRace = function() {
      
     if ($("dwarves").checked == true){
         $("raceBox").innerHTML = raceD["dwarves"];
-        $("selectStats").style.display = "none"
+        $("selectStats").style.display = "none";
     } else if ($("elves").checked == true){
         $("raceBox").innerHTML = raceD["elves"];
         $("selectStats").style.display = "none"
     } else if ($("gnomes").checked == true){
         $("raceBox").innerHTML = raceD["gnomes"];
-        $("selectStats").style.display = "none"
+        $("selectStats").style.display = "none";
     } else if ($("halfElf").checked == true){
         $("raceBox").innerHTML = raceD["halfElf"];
         $("selectStats").style.display = "block";
@@ -61,7 +66,7 @@ var displayRace = function() {
         $("selectStats").style.display = "block";
     } else if ($("halfling").checked == true){
         $("raceBox").innerHTML = raceD["halfling"];
-        $("selectStats").style.display = "none"
+        $("selectStats").style.display = "none";
     } else if ($("human").checked == true){
         $("raceBox").innerHTML = raceD["human"];
         $("selectStats").style.display = "block";
@@ -149,6 +154,8 @@ var rollGold = function() {
             }
         }
     }
+    
+    addLocalStats();
    
     // same thing as above just in if else statement format
     /*
@@ -178,9 +185,153 @@ var rollGold = function() {
     */
 };
 
+// add stats into local storage after the user generates a character 
+var addLocalStats = function() {
+    
+    // grabs values for localStats array
+    // each position in localStats has to be that specific value otherwise it could display the wrong information
+    localStats[0] = $("name").value;
+    // localStats[1] found in validate() race section
+    // localStats[2] found in validate() select a stat section
+    // localStats[3] found in validate() class race section
+    localStats[4] = $("str").value;
+    localStats[5] = $("dex").value;
+    localStats[6] = $("cons").value;
+    localStats[7] = $("int").value;
+    localStats[8] = $("wis").value;
+    localStats[9] = $("cha").value;
+    localStats[10] = $("gold").value;
+    
+    // stores values from localStats into localStorage
+    localStorage.localStats = localStats.join(",");
+};
+
+// looks at local storage and if there is anything there, displays the information
+var displayLocalStats = function() {
+    
+    if(localStats.length == 0){
+        var storage = localStorage.getItem("localStats") || "";
+        if (storage.length > 0){
+            localStats = storage.split(",");
+        }
+    }
+    
+    // associate, select and display race radio buttons from local storage
+    var raceRadio = document.getElementsByName('race');
+    var raceName = ["Dwarves", "Elves", "Gnomes", "Half-Elf", "Half-Orc","Halfling", "Human"];
+
+    if (localStats[1] == "Dwarves"){
+        raceRadio[0].checked = true;
+        displayRace();
+    } else if (localStats[1] == "Elves"){
+        raceRadio[1].checked = true;
+        displayRace();
+    } else if (localStats[1] == "Gnomes"){
+        raceRadio[2].checked = true;
+        displayRace();
+    } else if (localStats[1] == "Half-Elf"){
+        raceRadio[3].checked = true;
+        displayRace();
+    } else if (localStats[1] == "Half-Orc"){
+        raceRadio[4].checked = true;
+        displayRace();
+    } else if (localStats[1] == "Halfling"){
+        raceRadio[5].checked = true;
+        displayRace();
+    } else if (localStats[1] == "Human"){
+        raceRadio[6].checked = true;
+        displayRace();
+    }
+    
+    // associate, select and display select a stat radio buttons from local storage
+    var selectStatRadio = document.getElementsByName('selectS');
+    var selectStatName = ["+2 Strength","+2 Dexterity","+2 Constitution","+2 Intelligence","+2 Wisdom","+2 Charisma"];
+    
+    if (localStats[2] == "+2 Strength"){
+        selectStatRadio[0].checked = true;
+        displayClass();
+    } else if (localStats[2] == "+2 Dexterity"){
+        selectStatRadio[1].checked = true;
+        displayClass();
+    } else if (localStats[2] == "+2 Constitution"){
+        selectStatRadio[2].checked = true;
+        displayClass();
+    } else if (localStats[2] == "+2 Intelligence"){
+        selectStatRadio[3].checked = true;
+        displayClass();
+    } else if (localStats[2] == "+2 Wisdom"){
+        selectStatRadio[4].checked = true;
+        displayClass();
+    } else if (localStats[2] == "+2 Charisma"){
+        selectStatRadio[5].checked = true;
+        displayClass();
+    }
+    
+    // associate, select and display  class radio buttons from local storage
+    var classRadio = document.getElementsByName('class');
+    var className = ["Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Wizard"];
+    
+    if (localStats[3] == "Barbarian"){
+        classRadio[0].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Bard"){
+        classRadio[1].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Cleric"){
+        classRadio[2].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Druid"){
+        classRadio[3].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Fighter"){
+        classRadio[4].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Monk"){
+        classRadio[5].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Paladin"){
+        classRadio[6].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Ranger"){
+        classRadio[7].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Rogue"){
+        classRadio[8].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Sorcerer"){
+        classRadio[9].checked = true;
+        displayClass();
+    } else if (localStats[3] == "Wizard"){
+        classRadio[10].checked = true;
+        displayClass();
+    }
+    
+    // displays information from local storage or if theres nothing to display then areas are blank
+    if (storage != 0){
+        $("name").value = localStats[0];
+        $("str").value = localStats[4];
+        $("dex").value = localStats[5];
+        $("cons").value = localStats[6];
+        $("int").value = localStats[7];
+        $("wis").value = localStats[8];
+        $("cha").value = localStats[9];
+        $("gold").value = localStats[10]; 
+    } else {
+        $("name").value = "";
+        $("str").value = "";
+        $("dex").value = "";
+        $("cons").value = "";
+        $("int").value = "";
+        $("wis").value = "";
+        $("cha").value = "";
+        $("gold").value = "";
+    }
+};
+
 // rolls the stats that will populate in the stats section when the generate button is hit
 // if clicked and successful rolls stats for the user
 var rollStats = function() {
+    
     var str = [];
     var dex = [];
     var cons = [];
@@ -234,82 +385,83 @@ var rollStats = function() {
     
     // displays stat accordingly by race and applies race modifiers
     if ($("dwarves").checked == true) {
-        $("str").value = strSum;
-        $("dex").value = dexSum;
-        $("cons").value = consSum + 2 + "    +2 Race Modifier";
-        $("int").value = intSum;
-        $("wis").value = wisSum + 2 + "    +2 Race Modifier";
-        $("cha").value = chaSum - 2 + "    -2 Race Modifier";
+        $("str").value = "  " + strSum;
+        $("dex").value = "  " + dexSum;
+        $("cons").value = "  " + (consSum + 2) + "    +2 Race Modifier";
+        $("int").value = "  " + intSum;
+        $("wis").value = "  " + (wisSum + 2) + "    +2 Race Modifier";
+        $("cha").value = "  " + (chaSum - 2) + "    -2 Race Modifier";
     } else if ($("elves").checked == true){
-        $("str").value = strSum;
-        $("dex").value = dexSum + 2 + "    +2 Race Modifier";
-        $("cons").value = consSum - 2 + "    -2 Race Modifier";
-        $("int").value = intSum + 2 + "    +2 Race Modifier";
-        $("wis").value = wisSum;
-        $("cha").value = chaSum;
+        $("str").value = "  " + strSum;
+        $("dex").value = "  " + (dexSum + 2) + "    +2 Race Modifier";
+        $("cons").value = "  " + (consSum - 2) + "    -2 Race Modifier";
+        $("int").value = "  " + (intSum + 2) + "    +2 Race Modifier";
+        $("wis").value = "  " + wisSum;
+        $("cha").value = "  " + chaSum; 
     } else if ($("gnomes").checked == true){
-        $("str").value = strSum -2 + "    -2 Race Modifier";
-        $("dex").value = dexSum;
-        $("cons").value = consSum + 2 + "    +2 Race Modifier";
-        $("int").value = intSum;
-        $("wis").value = wisSum;
-        $("cha").value = chaSum + 2 + "    +2 Race Modifier";
+        $("str").value = "  " + (strSum -2) + "    -2 Race Modifier";
+        $("dex").value = "  " + dexSum;
+        $("cons").value = "  " + (consSum + 2) + "    +2 Race Modifier";
+        $("int").value = "  " + intSum;
+        $("wis").value = "  " + wisSum;
+        $("cha").value = "  " + (chaSum + 2) + "    +2 Race Modifier";
     } else if ($("halfling").checked == true){
-        $("str").value = strSum - 2 + "    -2 Race Modifier";
-        $("dex").value = dexSum + 2 + "    +2 Race Modifier";
-        $("cons").value = consSum;
-        $("int").value = intSum;
-        $("wis").value = wisSum;
-        $("cha").value = chaSum + 2 + "    +2 Race Modifier";
+        $("str").value = "  " + (strSum - 2) + "    -2 Race Modifier";
+        $("dex").value = "  " + (dexSum + 2) + "    +2 Race Modifier";
+        $("cons").value = "  " + consSum;
+        $("int").value = "  " + intSum;
+        $("wis").value = "  " + wisSum;
+        $("cha").value = "  " + (chaSum + 2) + "    +2 Race Modifier";
     }
     
     
     // if halfElf, halfOrc, or human is selected the user gets to add +2 to a stat of their choice. Verifies which is checked and adds it accordingly    
     if ($("halfElf").checked == true || $("halfOrc").checked == true || $("human").checked == true){
         if ($("strength").checked == true){
-            $("str").value = strSum + 2 + "    +2 Race Modifier";
-            $("dex").value = dexSum;
-            $("cons").value = consSum;
-            $("int").value = intSum;
-            $("wis").value = wisSum;
-            $("cha").value = chaSum;
+            $("str").value = "  " + (strSum + 2) + "    +2 Race Modifier";
+            $("dex").value = "  " + dexSum;
+            $("cons").value = "  " + consSum;
+            $("int").value = "  " + intSum;
+            $("wis").value = "  " + wisSum;
+            $("cha").value = "  " + chaSum;
         } else if ($("dexterity").checked == true){
-            $("str").value = strSum;
-            $("dex").value = dexSum + 2 + "    +2 Race Modifier";
-            $("cons").value = consSum;
-            $("int").value = intSum;
-            $("wis").value = wisSum;
-            $("cha").value = chaSum;
+            $("str").value = "  " + strSum;
+            $("dex").value = "  " + (dexSum + 2) + "    +2 Race Modifier";
+            $("cons").value = "  " + consSum;
+            $("int").value = "  " + intSum;
+            $("wis").value = "  " + wisSum;
+            $("cha").value = "  " + chaSum;
         } else if ($("constitution").checked == true){
-            $("str").value = strSum;
-            $("dex").value = dexSum;
-            $("cons").value = consSum + 2 + "    +2 Race Modifier";
-            $("int").value = intSum;
-            $("wis").value = wisSum;
-            $("cha").value = chaSum;
+            $("str").value = "  " + strSum;
+            $("dex").value = "  " + dexSum;
+            $("cons").value = "  " + (consSum + 2) + "    +2 Race Modifier";
+            $("int").value = "  " + intSum;
+            $("wis").value = "  " + wisSum;
+            $("cha").value = "  " + chaSum;
         } else if ($("intelligence").checked == true){
-            $("str").value = strSum;
-            $("dex").value = dexSum;
-            $("cons").value = consSum;
-            $("int").value = intSum + 2 + "    +2 Race Modifier";
-            $("wis").value = wisSum;
-            $("cha").value = chaSum;
+            $("str").value = "  " + strSum;
+            $("dex").value = "  " + dexSum;
+            $("cons").value = "  " + consSum;
+            $("int").value = "  " + (intSum + 2) + "    +2 Race Modifier";
+            $("wis").value = "  " + wisSum;
+            $("cha").value = "  " + chaSum;
         } else if ($("wisdom").checked == true){
-            $("str").value = strSum;
-            $("dex").value = dexSum;
-            $("cons").value = consSum;
-            $("int").value = intSum;
-            $("wis").value = wisSum + 2 + "    +2 Race Modifier";
-            $("cha").value = chaSum;
+            $("str").value = "  " + strSum;
+            $("dex").value = "  " + dexSum;
+            $("cons").value = "  " + consSum;
+            $("int").value = "  " + intSum;
+            $("wis").value = "  " + (wisSum + 2) + "    +2 Race Modifier";
+            $("cha").value = "  " + chaSum;
         } else if ($("charisma").checked == true){
-            $("str").value = strSum;
-            $("dex").value = dexSum;
-            $("cons").value = consSum;
-            $("int").value = intSum;
-            $("wis").value = wisSum;
-            $("cha").value = chaSum + 2 + "    +2 Race Modifier";
+            $("str").value = "  " + strSum;
+            $("dex").value = "  " + dexSum;
+            $("cons").value = "  " + consSum;
+            $("int").value = "  " + intSum;
+            $("wis").value = "  " + wisSum;
+            $("cha").value = "  " + (chaSum + 2) + "    +2 Race Modifier";
         }
     }
+    addLocalStats();
     
 };
 
@@ -324,6 +476,7 @@ var validate = function() {
         alert("Please enter a name.");
     } else {
         $("nameL").innerHTML = "Name: ";
+        //alert($("name").value);
     }
     
     // validates if a race is selected
@@ -338,6 +491,7 @@ var validate = function() {
         if(raceRadio[j].checked == true){
             raceValue = true;
             raceConfirm = raceName[j]; // stores which race is selected in a variable
+            localStats[1] = raceName[j]; // saves which race was selected as a string for local storage
             
         }
     }
@@ -362,7 +516,7 @@ var validate = function() {
         if(classRadio[j].checked == true){
             classValue = true;
             classConfirm = className[j]; // stores which race is selected in a variable
-            
+            localStats[3] = className[j]; // saves which class was selected as a string for local storage
         }
     }
     // if nothing is selected the select a class area is highlighted red
@@ -386,6 +540,7 @@ var validate = function() {
             if(selectStatRadio[j].checked == true){
                 selectStatValue = true;
                 selectStatConfirm = selectStatName[j]; // stores which selected stat is selected in a variable
+                localStats[2] = selectStatName[j]; // saves which select a stat was selected as a string for local storage
                 $("selectS").innerHTML = "Strenght";
                 $("selectD").innerHTML = "Dexterity";
                 $("selectC").innerHTML = "Constitution";
@@ -425,9 +580,15 @@ var validate = function() {
     
 };
 
-// resets the entire form 
+// deletes local storage
+var deleteCookie = function(key){
+	localStorage.setItem(key, "");
+} 
+
+// resets the entire form and deletes local storage
 var reset = function() {
     
+    deleteCookie("localStats");
     $("name").value = "";
     $("dwarves").checked = false;
     $("elves").checked = false;
@@ -477,6 +638,8 @@ var reset = function() {
 window.onload = function() {
     
     $("name").focus();
+    $("selectStats").style.display = "none";
+    displayLocalStats();
     $("dwarves").onclick = displayRace;
     $("elves").onclick = displayRace;
     $("gnomes").onclick = displayRace;
@@ -497,5 +660,5 @@ window.onload = function() {
     $("wizard").onclick = displayClass;
     $("generate").onclick = validate;
     $("reset").onclick = reset;
-    $("selectStats").style.display = "none";
+    
 };
